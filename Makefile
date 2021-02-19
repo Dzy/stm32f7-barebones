@@ -55,7 +55,8 @@ size: $(PROJECT).elf
 	$(SIZE) $(PROJECT).elf
 
 flash: $(PROJECT).bin
-	st-flash write $(PROJECT).bin 0x8000000
+	#st-flash write $(PROJECT).bin 0x8000000
+	STM32_Programmer_CLI -c port=SWD -w $< 0x08000000 -rst
 
 DEPS = $(OBJECTS:.o=.d)
 -include $(DEPS)
